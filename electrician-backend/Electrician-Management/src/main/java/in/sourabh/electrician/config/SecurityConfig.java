@@ -45,7 +45,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/user/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/api/electrician/**").hasAnyRole("ELECTRICIAN", "ADMIN")
                         .requestMatchers("/ws/**", "/websocket/**").permitAll() // For WebSocket endpoints
-                        .anyRequest().permitAll());
+                        .anyRequest().permitAll())
+                .httpBasic(org.springframework.security.config.Customizer.withDefaults());
 
         return http.build();
     }
@@ -55,7 +56,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration
                 .setAllowedOrigins(List.of("http://localhost:5173", "http://localhost:5174", "http://localhost:3000",
-                    "https://electrician-anagement-system-with-a-psi.vercel.app"
+                     "https://electrician-anagement-system-with-a-psi.vercel.app"
                 ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         configuration.setAllowedHeaders(List.of("*"));
