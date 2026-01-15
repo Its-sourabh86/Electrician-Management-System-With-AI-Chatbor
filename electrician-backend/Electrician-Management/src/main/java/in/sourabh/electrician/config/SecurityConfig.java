@@ -45,8 +45,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/user/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/api/electrician/**").hasAnyRole("ELECTRICIAN", "ADMIN")
                         .requestMatchers("/ws/**", "/websocket/**").permitAll() // For WebSocket endpoints
-                        .anyRequest().authenticated())
-                .httpBasic(org.springframework.security.config.Customizer.withDefaults());
+                        .anyRequest().permitAll());
 
         return http.build();
     }
